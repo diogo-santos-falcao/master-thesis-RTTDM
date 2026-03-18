@@ -1,7 +1,9 @@
 # Railway Time Table Disruption Management
 
 **Author:** Diogo Falcão
+
 **Advisors:** Prof. Alessandro Gianola, Eng. Carlos Conceição
+
 **Context:** Master's Thesis in Computer Science and Engineering - Instituto Superior Técnico (IST), Universidade de Lisboa.
 
 ## Overview
