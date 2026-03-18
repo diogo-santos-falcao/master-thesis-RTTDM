@@ -1,0 +1,34 @@
+Aspect: red
+	IconE: roodTSE.xpm zwartTSE.xpm
+	IconW: roodTSW.xpm zwartTSW.xpm
+	IconN: roodTSN.xpm zwartTSN.xpm
+	IconS: roodTSS.xpm zwartTSS.xpm
+	Action: stop
+
+Aspect: yellow40
+	IconE: geelTSE.xpm zwartTSE.xpm
+	IconW: geelTSW.xpm zwartTSW.xpm
+	IconN: geelTSN.xpm zwartTSN.xpm
+	IconS: geelTSS.xpm zwartTSS.xpm
+	Action: speedLimit 40
+
+
+# initial aspect
+
+OnInit:
+	.aspect = red
+	.fleeted = 0
+end
+
+OnCleared:
+       	.aspect = yellow40
+end
+
+
+OnUpdate:
+	if .aspect = red 
+		return 
+	end
+	.aspect = yellow40
+end
+

@@ -1,0 +1,74 @@
+Aspect: red
+	IconE: roodTSE.xpm zwartTSE.xpm
+	IconW: roodTSW.xpm zwartTSW.xpm
+	IconN: roodTSN.xpm zwartTSN.xpm
+	IconS: roodTSS.xpm zwartTSS.xpm
+	Action: stop
+
+Aspect: yellow
+	IconE: geelTSE.xpm zwartTSE.xpm
+	IconW: geelTSW.xpm zwartTSW.xpm
+	IconN: geelTSN.xpm zwartTSN.xpm
+	IconS: geelTSS.xpm zwartTSS.xpm
+	Action: speedLimit 40
+
+Aspect: green
+	IconE: groenTSE.xpm zwartTSE.xpm
+	IconW: groenTSW.xpm zwartTSW.xpm
+	IconN: groenTSN.xpm zwartTSN.xpm
+	IconS: groenTSS.xpm zwartTSS.xpm
+	Action: speedLimit 140
+
+Aspect: yellow60
+	IconE: geelTSE.xpm zwartTSE.xpm
+	IconW: geelTSW.xpm zwartTSW.xpm
+	IconN: geelTSN.xpm zwartTSN.xpm
+	IconS: geelTSS.xpm zwartTSS.xpm
+	Action: speedLimit 40
+
+Aspect: green60
+	IconE: groenTSE.xpm zwartTSE.xpm
+	IconW: groenTSW.xpm zwartTSW.xpm
+	IconN: groenTSN.xpm zwartTSN.xpm
+	IconS: groenTSS.xpm zwartTSS.xpm
+	Action: speedLimit 60
+
+# initial aspect
+
+OnInit:
+	.aspect = red
+	.fleeted = 0
+end
+
+OnCleared:
+       	if next.aspect = red
+		.aspect = yellow
+      	else	
+		.aspect = green
+   	end
+end
+
+
+
+OnUpdate:
+	if .aspect = red
+		return 
+	end 
+	if next.aspect = red 
+		if .switchThrown
+			if .nextLength > 2000
+				.aspect = green60
+			else
+				.aspect = yellow60
+			end
+		else 
+			.aspect = yellow 
+	else 
+		if .switchThrown
+			.aspect = green60
+		else  
+			.aspect = green
+		end
+	end
+end
+

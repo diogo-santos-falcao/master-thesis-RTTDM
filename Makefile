@@ -18,7 +18,7 @@ SUPERSOLVERNAMEID=1#1 2 3 4 5
 NSPACE     = Glucose
 ifeq ($(SUPERSOLVERNAMEID), 5)
 Dist: solver/SATLike/basis_pms.h solver/SATLike/pms.h solver/SATLike/pms.cpp rapidjson/*.h rapidjson/msinttypes/*.h rapidjson/internal/*.h rapidjson/error/*.h problem/*.h
-	g++ -std=c++11 main.cc -DMAXSATNID=$(SUPERSOLVERNAMEID)  -O3  -o timetabler
+	g++ -std=c++11 main.cc TD3Parser.cc -DMAXSATNID=$(SUPERSOLVERNAMEID)  -O3  -o timetabler
 endif
 ifneq ($(SUPERSOLVERNAMEID), 5)
 SOLVERDIR  = solver/$(SUPERSOLVERNAME)/solvers/glucose4.1
@@ -28,7 +28,7 @@ DEPDIR     = mtl utils core
 DEPDIR     +=  ../../../$(SUPERSOLVERNAME) ../../encodings ../../algorithms ../../graph ../../classifier ../../clusterings ../../../../problem   ../../../../rapidXMLParser
 MROOT      = $(PWD)/$(SOLVERDIR)
 LFLAGS     += -lgmpxx -lgmp
-CFLAGS     =  -DMAXSATNID=$(SUPERSOLVERNAMEID)  -O3 -Wall -Wno-parentheses -std=c++11 -DNSPACE=$(NSPACE) -DSOLVERNAME=$(SOLVERNAME) -DVERSION=$(VERSION)
+CFLAGS =  -DMAXSATNID=$(SUPERSOLVERNAMEID)  -O3 -Wall -Wno-parentheses -fpermissive -std=c++11 -DNSPACE=$(NSPACE) -DSOLVERNAME=$(SOLVERNAME) -DVERSION=$(VERSION)
 ifeq ($(VERSION),simp)
 DEPDIR     += simp
 CFLAGS     += -DSIMP=1
@@ -38,5 +38,6 @@ CFLAGS     += -DGLUCORED
 DEPDIR     += reducer glucored
 endif
 endif
+CSRCS      += $(PWD)/TD3Parser.cc
 include $(MROOT)/mtl/template.mk
 endif

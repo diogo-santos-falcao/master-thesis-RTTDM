@@ -1,0 +1,31 @@
+Aspect: red
+	IconE: simredE.xpm
+	IconW: simredW.xpm
+	IconN: simredN.xpm
+	IconS: simredS.xpm
+	Action: stop
+
+Aspect: green
+	IconE: simgreenE.xpm
+	IconW: simgreenW.xpm
+	IconN: simgreenN.xpm
+	IconS: simgreenS.xpm
+	Action: speedLimit 40
+
+# initial aspect
+
+OnInit:
+	.aspect = red
+	.fleeted = 0
+end
+
+OnCleared:
+       	.aspect = green
+end
+
+OnUpdate:
+	if .aspect = red 
+		return 
+	end
+	.aspect = green
+end

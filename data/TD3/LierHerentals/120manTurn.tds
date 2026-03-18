@@ -1,0 +1,48 @@
+Aspect: red
+	IconE: roodTSE.xpm zwartTSE.xpm
+	IconW: roodTSW.xpm zwartTSW.xpm
+	IconN: roodTSN.xpm zwartTSN.xpm
+	IconS: roodTSS.xpm zwartTSS.xpm
+	Action: stop
+
+Aspect: yellow
+	IconE: geelTSE.xpm zwartTSE.xpm
+	IconW: geelTSW.xpm zwartTSW.xpm
+	IconN: geelTSN.xpm zwartTSN.xpm
+	IconS: geelTSS.xpm zwartTSS.xpm
+	Action: speedLimit 40
+
+Aspect: ggh
+	IconE: gghTSE.xpm zwartTSE.xpm
+	IconW: gghTSW.xpm zwartTSW.xpm
+	IconN: gghTSN.xpm zwartTSN.xpm
+	IconS: gghTSS.xpm zwartTSS.xpm
+	Action: speedLimit 120
+
+# initial aspect
+
+OnInit:
+	.aspect = red
+	.fleeted = 0
+end
+
+OnCleared:
+       	if next.aspect = red
+		.aspect = yellow
+      	else	
+		.aspect = ggh
+   	end
+end
+
+
+OnUpdate:
+	if .aspect = red 
+		return 
+	end
+	if next.aspect = red
+		.aspect = yellow
+	else 
+		.aspect = ggh
+	end
+end
+

@@ -158,6 +158,8 @@ int cardinalityB;
 #include "problem/route_path.h"
 #include "problem/route_section.h"
 
+#include "TD3Parser.h"
+
 
 #define VER1_(x) #x
 #define VER_(x) VER1_(x)
@@ -180,6 +182,11 @@ using NSPACE::cpuTime;
 using NSPACE::parseOptions;
 using namespace openwbo;
 
+StringOption opt_td3_trk("TD3", "td3-trk", "TD3 Track File (.trk)", "");
+StringOption opt_td3_sch("TD3", "td3-sch", "TD3 Schedule File (.sch)", "");
+StringOption opt_disrupt_train("TD3", "disrupt-train", "Train ID to disrupt", "");
+IntOption opt_disrupt_time("TD3", "disrupt-time", "Disruption delay in seconds", 0, IntRange(0, INT_MAX));
+
 
 //=================================================================================================
 
@@ -200,6 +207,8 @@ MaxSATFormula *maxsat_formula;
 Instance readJSONFile(char *);
 Instance readOutputJSONFile(char*);
 void outputJSONFile(Instance instance);
+void computeRealTimes(Instance& instance);
+void printInstanceDebug(const Instance& instance);
 
 static void SIGINT_exit(int signum) {
     S->printAnswer(_UNKNOWN_);
@@ -349,7 +358,8 @@ int main(int argc, char **argv) {
          code = S->search();
 #endif
         std::cout<<(clock() - myTimeStart) / CLOCKS_PER_SEC<<std::endl;
-        std::exit(1);
+        //IMPORTANTE PARA PROCESSAR RESULTADOS, METER EM COMENTARIO O STD::EXIT(1)
+        //std::exit(1);
         while(code!=_SATISFIABLE_&&code!=_OPTIMUM_){
             S->getConflict();
             for (int i = 0; i < S->errorP.size(); i++) {
@@ -364,6 +374,14 @@ int main(int argc, char **argv) {
                 indexMap::const_iterator iter = maxsat_formula->getIndexToName().find(i);
                 if (iter != maxsat_formula->getIndexToName().end()) {
                     if (S->model[i] != l_False) {
+
+
+
+                        std::cout << "[DEBUG VAR] " << iter->second << std::endl;
+
+
+
+
                         std::string id =iter->second.substr(iter->second.find(delimiter) + 1, iter->second.size());
                         std::string sid = id.substr(id.find(delimiter) + 1, id.size());
                         std::string rid = id.substr(0,id.find(delimiter));
@@ -399,7 +417,7 @@ int main(int argc, char **argv) {
 
                 }
             }
-
+            computeRealTimes(instance);
             outputJSONFile(instance);
 
 
@@ -423,7 +441,68 @@ void genEncoding(int argc, char **argv) {
 
     maxsat_formula = new MaxSATFormula();
     maxsat_formula->setFormat(_FORMAT_PB_);
-    instance= readJSONFile(argv[1]);
+    
+    // --- LÓGICA DE DECISÃO (TD3 vs JSON) ---
+    const char* trkVal = opt_td3_trk;
+    const char* schVal = opt_td3_sch;
+
+    // Se as flags do TD3 estiverem preenchidas
+    if (trkVal && strlen(trkVal) > 0 && schVal && strlen(schVal) > 0) {
+        std::cout << ">>> MODO TD3 ATIVADO <<<" << std::endl;
+        
+        std::string trkStr = trkVal;
+        std::string schStr = schVal;
+        
+        // Variáveis finais que vamos passar ao parser
+        std::string basePath = "";
+        std::string trkName = trkStr;
+        std::string schName = schStr;
+
+        // 1. EXTRAIR A PASTA (Base Path)
+        // Se o utilizador escreveu "data/Lier/Ficheiro.trk", tiramos o "data/Lier/"
+        size_t lastSlash = trkStr.find_last_of("/\\");
+        if (lastSlash != std::string::npos) {
+            basePath = trkStr.substr(0, lastSlash + 1); 
+            trkName = trkStr.substr(lastSlash + 1); // Fica só "Ficheiro.trk"
+        }
+
+        // 2. EXTRAIR O NOME DO SCH (Caso também tenha caminho)
+        size_t lastSlashSch = schStr.find_last_of("/\\");
+        if (lastSlashSch != std::string::npos) {
+            schName = schStr.substr(lastSlashSch + 1);
+        }
+
+        // 3. INICIAR O PARSER
+        // Passamos o basePath para ele saber onde procurar os 'Includes'
+        TD3Parser parser(instance, basePath);
+
+        // 4. EXECUTAR (Passando APENAS os nomes, sem a pasta duplicada)
+        parser.parse(trkName, schName);
+        parser.buildAuxiliaryStructures();
+        
+        parser.debugDump();
+
+        // 5. TRAVÃO DE SEGURANÇA (Para evitar o Core Dump)
+        if (instance.train.empty()) {
+            std::cerr << "[ERRO CRÍTICO] Nenhum comboio carregado. Verifica os caminhos." << std::endl;
+            exit(1); // Sai do programa antes de o Solver explodir
+        }
+
+    } else {
+        // --- MODO LEGACY (JSON) ---
+        if (argc > 1 && argv[1][0] != '-') {
+            
+            // Apenas isto! Lê o ficheiro e segue em frente.
+            instance = readJSONFile(argv[1]);
+          
+
+        } else {
+            std::cerr << "ERRO: Tens de fornecer um ficheiro JSON..." << std::endl;
+            exit(1);
+        }
+    }
+
+
     //stat(instance,diffV);
     //std::exit(1);
     int secV=0;
@@ -520,8 +599,8 @@ void genEncoding(int argc, char **argv) {
             printf("0\n");
             for (int j = 0; j < instance.train.size(); ++j) {
                 int s=0;
-                for(route_path rp: instance.route[instance.train[j].route].route_path) {
-                    for (route_section *rs: rp.route_section) {
+                for(route_path rp: instance.route[instance.train[j].route].route_paths) {
+                    for (route_section *rs: rp.route_sections) {
                         PB *p=new PB();
                         for (int i = minV; i < maxV; ++i) {
                             timeV++;
@@ -1944,11 +2023,11 @@ Instance readJSONFile(char* local) {
 
             }
 
-            rp.route_section=rsl;
+            rp.route_sections=rsl;
             rpl.push_front(rp);
 
         }
-        r.route_path=rpl;
+        r.route_paths=rpl;
         r.totalSeq=nSeq;
         rr.insert(std::pair<std::string,Route>(r.id,r));
     }
@@ -1974,3 +2053,100 @@ Instance readJSONFile(char* local) {
 
 
 
+void printInstanceDebug(const Instance& instance) {
+    std::cout << "\n=============================================" << std::endl;
+    std::cout << "          RAIO-X DA INSTANCE (DEBUG)         " << std::endl;
+    std::cout << "=============================================" << std::endl;
+    
+    std::cout << "1. IDENTIFICACAO" << std::endl;
+    std::cout << "   Label: " << instance.label << std::endl;
+    std::cout << "   Hash:  " << instance.hash << std::endl;
+
+    std::cout << "\n2. DADOS BRUTOS" << std::endl;
+    std::cout << "   Comboios (Train): " << instance.train.size() << std::endl;
+    if (!instance.train.empty()) {
+        std::cout << "     -> Primeiro: " << instance.train[0].id << std::endl;
+        std::cout << "     -> Ultimo:   " << instance.train.back().id << std::endl;
+    }
+    std::cout << "   Rotas (Route):    " << instance.route.size() << std::endl;
+
+    std::cout << "\n3. MAPAS AUXILIARES (O mais importante!)" << std::endl;
+    std::cout << "   EntryMap (Chaves):  " << instance.entryMap.size() << std::endl;
+    std::cout << "   ExitMap (Chaves):   " << instance.exitMap.size() << std::endl;
+    std::cout << "   MarkerMap (Chaves): " << instance.markerMap.size() << std::endl;
+    std::cout << "   EndMap (Links):     " << instance.end.size() << std::endl;
+    std::cout << "   SectionMap:         " << instance.sectionMap.size() << std::endl;
+
+    std::cout << "\n4. VERIFICACAO DE AMOSTRA (Maps)" << std::endl;
+    if (!instance.entryMap.empty()) {
+        auto it = instance.entryMap.begin();
+        std::cout << "   Exemplo EntryMap: Key=['" << it->first << "'] -> Size=" << it->second.size() << std::endl;
+    }
+    if (!instance.markerMap.empty()) {
+        auto it = instance.markerMap.begin();
+        std::cout << "   Exemplo MarkerMap: Key=['" << it->first << "']" << std::endl;
+        std::cout << "   (Lembra-te: MarkerMap inverte a chave: Rota^Estacao)" << std::endl;
+    }
+
+    std::cout << "=============================================\n" << std::endl;
+}
+
+void computeRealTimes(Instance& instance) {
+    std::cout << ">>> A PROCESSAR HORARIOS (PÓS-PROCESSAMENTO)..." << std::endl;
+
+    for (auto& [trainID, sectionsMap] : instance.results) {
+        int current_time_seconds = -1; 
+
+        // Itera sobre as secções NA ORDEM CORRETA (1, 2, 3...)
+        for (auto& [seqNr, trs] : sectionsMap) {
+            
+            // 1. Encontrar o Requirement original
+            Requirement* req = nullptr;
+            for (auto& t : instance.train) {
+                if (t.id == trainID) {
+                    for (Requirement* r : t.t) {
+                        if (trs->section_requirement == r->section_marker) {
+                            req = r;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            // 2. ENTRY TIME (Chegada)
+            int arrival_time = 0;
+            if (req != nullptr && req->sec_entry_earliest > 0) {
+                arrival_time = req->sec_entry_earliest;
+            }
+            // Lógica de atraso: se o comboio vem tarde, empurra a chegada
+            if (current_time_seconds > arrival_time) {
+                arrival_time = current_time_seconds; 
+            }
+            
+            char buff[16];
+            sprintf(buff, "%02d:%02d:%02d", (arrival_time/3600)%24, (arrival_time/60)%60, arrival_time%60);
+            trs->entry_time = std::string(buff);
+
+            // 3. EXIT TIME (Partida)
+            int departure_time = arrival_time;
+            int min_duration = 30; // Tempo mínimo por defeito
+            
+            if (req != nullptr && !req->min_stopping_time.empty()) {
+                 try { min_duration = std::stoi(req->min_stopping_time); } catch(...) { min_duration = 60; }
+            }
+            departure_time += min_duration;
+
+            // Se o horário diz para sair mais tarde, espera
+            if (req != nullptr && req->sec_exit_earliest > departure_time) {
+                departure_time = req->sec_exit_earliest;
+            }
+
+            sprintf(buff, "%02d:%02d:%02d", (departure_time/3600)%24, (departure_time/60)%60, departure_time%60);
+            trs->exit_time = std::string(buff);
+            
+            // Atualiza o tempo para a próxima secção
+            current_time_seconds = departure_time; 
+        }
+    }
+}

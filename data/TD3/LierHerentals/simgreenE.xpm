@@ -1,0 +1,15 @@
+/* XPM */
+static char *simgreenE[] = {
+/* columns rows colors chars-per-pixel */
+"12 7 2 1 ",
+"  c black",
+". c green",
+/* pixels */
+"            ",
+"            ",
+"       ...  ",
+"       ...  ",
+"       ...  ",
+"            ",
+"            "
+};

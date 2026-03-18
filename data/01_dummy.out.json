@@ -1,0 +1,468 @@
+{
+    "problem_instance_label": "01_dummy",
+    "problem_instance_hash": 759370455,
+    "hash": 42,
+    "train_runs": [
+        {
+            "service_intention_id": "18823",
+            "train_run_sections": [
+                {
+                    "entry_time": "06:35:00",
+                    "exit_time": "06:37:00",
+                    "route": "18823",
+                    "route_section_id": "18823#1",
+                    "sequence_number": 1,
+                    "route_path": "standard",
+                    "section_requirement": "ZLOE_Halt"
+                },
+                {
+                    "entry_time": "06:37:00",
+                    "exit_time": "06:39:00",
+                    "route": "18823",
+                    "route_section_id": "18823#37",
+                    "sequence_number": 2,
+                    "route_path": "standard",
+                    "section_requirement": "ZWIE_Halt"
+                },
+                {
+                    "entry_time": "06:39:00",
+                    "exit_time": "06:43:00",
+                    "route": "18823",
+                    "route_section_id": "18823#52",
+                    "sequence_number": 3,
+                    "route_path": "standard",
+                    "section_requirement": "ZEN_Halt"
+                },
+                {
+                    "entry_time": "06:43:00",
+                    "exit_time": "06:45:00",
+                    "route": "18823",
+                    "route_section_id": "18823#72",
+                    "sequence_number": 4,
+                    "route_path": "standard",
+                    "section_requirement": "ZWOL_Halt"
+                },
+                {
+                    "entry_time": "06:45:00",
+                    "exit_time": "06:47:00",
+                    "route": "18823",
+                    "route_section_id": "18823#102",
+                    "sequence_number": 5,
+                    "route_path": "standard",
+                    "section_requirement": "KIL_Halt"
+                },
+                {
+                    "entry_time": "06:47:00",
+                    "exit_time": "06:50:00",
+                    "route": "18823",
+                    "route_section_id": "18823#122",
+                    "sequence_number": 6,
+                    "route_path": "standard",
+                    "section_requirement": "RUES_Halt"
+                },
+                {
+                    "entry_time": "06:50:00",
+                    "exit_time": "06:54:00",
+                    "route": "18823",
+                    "route_section_id": "18823#142",
+                    "sequence_number": 7,
+                    "route_path": "standard",
+                    "section_requirement": "TW_Halt"
+                },
+                {
+                    "entry_time": "06:54:00",
+                    "exit_time": "06:56:00",
+                    "route": "18823",
+                    "route_section_id": "18823#172",
+                    "sequence_number": 8,
+                    "route_path": "standard",
+                    "section_requirement": "ORD_Halt"
+                },
+                {
+                    "entry_time": "06:56:00",
+                    "exit_time": "06:59:00",
+                    "route": "18823",
+                    "route_section_id": "18823#187",
+                    "sequence_number": 9,
+                    "route_path": "standard",
+                    "section_requirement": "HG_Halt"
+                },
+                {
+                    "entry_time": "06:59:00",
+                    "exit_time": "07:02:00",
+                    "route": "18823",
+                    "route_section_id": "18823#212",
+                    "sequence_number": 10,
+                    "route_path": "standard",
+                    "section_requirement": "AU_Halt"
+                },
+                {
+                    "entry_time": "07:02:00",
+                    "exit_time": "07:07:00",
+                    "route": "18823",
+                    "route_section_id": "18823#237",
+                    "sequence_number": 11,
+                    "route_path": "standard",
+                    "section_requirement": "WAE_Halt"
+                },
+                {
+                    "entry_time": "07:07:00",
+                    "exit_time": "07:10:00",
+                    "route": "18823",
+                    "route_section_id": "18823#262",
+                    "sequence_number": 12,
+                    "route_path": "standard",
+                    "section_requirement": "RI_Halt"
+                },
+                {
+                    "entry_time": "07:10:00",
+                    "exit_time": "07:12:00",
+                    "route": "18823",
+                    "route_section_id": "18823#277",
+                    "sequence_number": 13,
+                    "route_path": "standard",
+                    "section_requirement": "BAE_Halt"
+                },
+                {
+                    "entry_time": "07:12:00",
+                    "exit_time": "07:14:00",
+                    "route": "18823",
+                    "route_section_id": "18823#287",
+                    "sequence_number": 14,
+                    "route_path": "standard",
+                    "section_requirement": "FRB_Halt"
+                },
+                {
+                    "entry_time": "07:14:00",
+                    "exit_time": "07:15:00",
+                    "route": "18823",
+                    "route_section_id": "18823#305",
+                    "sequence_number": 15,
+                    "route_path": "standard",
+                    "section_requirement": "PF_Halt"
+                }
+            ]
+        },
+        {
+            "service_intention_id": "18825",
+            "train_run_sections": [
+                {
+                    "entry_time": "07:05:00",
+                    "exit_time": "07:07:00",
+                    "route": "18825",
+                    "route_section_id": "18825#1",
+                    "sequence_number": 1,
+                    "route_path": "standard",
+                    "section_requirement": "ZLOE_Halt"
+                },
+                {
+                    "entry_time": "07:07:00",
+                    "exit_time": "07:09:00",
+                    "route": "18825",
+                    "route_section_id": "18825#37",
+                    "sequence_number": 2,
+                    "route_path": "standard",
+                    "section_requirement": "ZWIE_Halt"
+                },
+                {
+                    "entry_time": "07:09:00",
+                    "exit_time": "07:13:00",
+                    "route": "18825",
+                    "route_section_id": "18825#52",
+                    "sequence_number": 3,
+                    "route_path": "standard",
+                    "section_requirement": "ZEN_Halt"
+                },
+                {
+                    "entry_time": "07:13:00",
+                    "exit_time": "07:15:00",
+                    "route": "18825",
+                    "route_section_id": "18825#72",
+                    "sequence_number": 4,
+                    "route_path": "standard",
+                    "section_requirement": "ZWOL_Halt"
+                },
+                {
+                    "entry_time": "07:15:00",
+                    "exit_time": "07:17:00",
+                    "route": "18825",
+                    "route_section_id": "18825#102",
+                    "sequence_number": 5,
+                    "route_path": "standard",
+                    "section_requirement": "KIL_Halt"
+                },
+                {
+                    "entry_time": "07:17:00",
+                    "exit_time": "07:20:00",
+                    "route": "18825",
+                    "route_section_id": "18825#122",
+                    "sequence_number": 6,
+                    "route_path": "standard",
+                    "section_requirement": "RUES_Halt"
+                },
+                {
+                    "entry_time": "07:20:00",
+                    "exit_time": "07:24:00",
+                    "route": "18825",
+                    "route_section_id": "18825#142",
+                    "sequence_number": 7,
+                    "route_path": "standard",
+                    "section_requirement": "TW_Halt"
+                },
+                {
+                    "entry_time": "07:24:00",
+                    "exit_time": "07:26:00",
+                    "route": "18825",
+                    "route_section_id": "18825#172",
+                    "sequence_number": 8,
+                    "route_path": "standard",
+                    "section_requirement": "ORD_Halt"
+                },
+                {
+                    "entry_time": "07:26:00",
+                    "exit_time": "07:29:00",
+                    "route": "18825",
+                    "route_section_id": "18825#187",
+                    "sequence_number": 9,
+                    "route_path": "standard",
+                    "section_requirement": "HG_Halt"
+                },
+                {
+                    "entry_time": "07:29:00",
+                    "exit_time": "07:32:00",
+                    "route": "18825",
+                    "route_section_id": "18825#212",
+                    "sequence_number": 10,
+                    "route_path": "standard",
+                    "section_requirement": "AU_Halt"
+                },
+                {
+                    "entry_time": "07:32:00",
+                    "exit_time": "07:37:00",
+                    "route": "18825",
+                    "route_section_id": "18825#237",
+                    "sequence_number": 11,
+                    "route_path": "standard",
+                    "section_requirement": "WAE_Halt"
+                },
+                {
+                    "entry_time": "07:37:00",
+                    "exit_time": "07:40:00",
+                    "route": "18825",
+                    "route_section_id": "18825#262",
+                    "sequence_number": 12,
+                    "route_path": "standard",
+                    "section_requirement": "RI_Halt"
+                },
+                {
+                    "entry_time": "07:40:00",
+                    "exit_time": "07:42:00",
+                    "route": "18825",
+                    "route_section_id": "18825#277",
+                    "sequence_number": 13,
+                    "route_path": "standard",
+                    "section_requirement": "BAE_Halt"
+                },
+                {
+                    "entry_time": "07:42:00",
+                    "exit_time": "07:44:00",
+                    "route": "18825",
+                    "route_section_id": "18825#287",
+                    "sequence_number": 14,
+                    "route_path": "standard",
+                    "section_requirement": "FRB_Halt"
+                },
+                {
+                    "entry_time": "07:44:00",
+                    "exit_time": "07:45:00",
+                    "route": "18825",
+                    "route_section_id": "18825#305",
+                    "sequence_number": 15,
+                    "route_path": "standard",
+                    "section_requirement": "PF_Halt"
+                }
+            ]
+        },
+        {
+            "service_intention_id": "20423",
+            "train_run_sections": [
+                {
+                    "entry_time": "06:48:00",
+                    "exit_time": "06:51:00",
+                    "route": "20423",
+                    "route_section_id": "20423#1",
+                    "sequence_number": 1,
+                    "route_path": "standard",
+                    "section_requirement": "ZUE_Halt"
+                },
+                {
+                    "entry_time": "06:51:00",
+                    "exit_time": "06:54:00",
+                    "route": "20423",
+                    "route_section_id": "20423#37",
+                    "sequence_number": 2,
+                    "route_path": "standard",
+                    "section_requirement": "ZWIE_Halt"
+                },
+                {
+                    "entry_time": "06:54:00",
+                    "exit_time": "06:58:00",
+                    "route": "20423",
+                    "route_section_id": "20423#52",
+                    "sequence_number": 3,
+                    "route_path": "standard",
+                    "section_requirement": "ZEN_Halt"
+                },
+                {
+                    "entry_time": "06:58:00",
+                    "exit_time": "07:00:00",
+                    "route": "20423",
+                    "route_section_id": "20423#72",
+                    "sequence_number": 4,
+                    "route_path": "standard",
+                    "section_requirement": "ZWOL_Halt"
+                },
+                {
+                    "entry_time": "07:00:00",
+                    "exit_time": "07:02:00",
+                    "route": "20423",
+                    "route_section_id": "20423#102",
+                    "sequence_number": 5,
+                    "route_path": "standard",
+                    "section_requirement": "KIL_Halt"
+                },
+                {
+                    "entry_time": "07:02:00",
+                    "exit_time": "07:05:00",
+                    "route": "20423",
+                    "route_section_id": "20423#122",
+                    "sequence_number": 6,
+                    "route_path": "standard",
+                    "section_requirement": "RUES_Halt"
+                },
+                {
+                    "entry_time": "07:05:00",
+                    "exit_time": "07:09:00",
+                    "route": "20423",
+                    "route_section_id": "20423#142",
+                    "sequence_number": 7,
+                    "route_path": "standard",
+                    "section_requirement": "TW_Halt"
+                },
+                {
+                    "entry_time": "07:09:00",
+                    "exit_time": "07:11:00",
+                    "route": "20423",
+                    "route_section_id": "20423#162",
+                    "sequence_number": 8,
+                    "route_path": "standard",
+                    "section_requirement": "ORDD_Halt"
+                },
+                {
+                    "entry_time": "07:11:00",
+                    "exit_time": "07:14:00",
+                    "route": "20423",
+                    "route_section_id": "20423#177",
+                    "sequence_number": 9,
+                    "route_path": "standard",
+                    "section_requirement": "HGO_Halt"
+                },
+                {
+                    "entry_time": "07:14:00",
+                    "exit_time": "07:21:00",
+                    "route": "20423",
+                    "route_section_id": "20423#257",
+                    "sequence_number": 10,
+                    "route_path": "standard",
+                    "section_requirement": "BAA_Halt"
+                },
+                {
+                    "entry_time": "07:21:00",
+                    "exit_time": "07:22:00",
+                    "route": "20423",
+                    "route_section_id": "20423#295",
+                    "sequence_number": 11,
+                    "route_path": "standard",
+                    "section_requirement": "ZG_Halt"
+                }
+            ]
+        },
+        {
+            "service_intention_id": "20425",
+            "train_run_sections": [
+                {
+                    "entry_time": "07:18:00",
+                    "exit_time": "07:21:00",
+                    "route": "20425",
+                    "route_section_id": "20425#1",
+                    "sequence_number": 1,
+                    "route_path": "standard",
+                    "section_requirement": "ZUE_Halt"
+                },
+                {
+                    "entry_time": "07:21:00",
+                    "exit_time": "07:24:00",
+                    "route": "20425",
+                    "route_section_id": "20425#37",
+                    "sequence_number": 2,
+                    "route_path": "standard",
+                    "section_requirement": "ZWIE_Halt"
+                },
+                {
+                    "entry_time": "07:24:00",
+                    "exit_time": "07:28:00",
+                    "route": "20425",
+                    "route_section_id": "20425#52",
+                    "sequence_number": 3,
+                    "route_path": "standard",
+                    "section_requirement": "ZEN_Halt"
+                },
+                {
+                    "entry_time": "07:28:00",
+                    "exit_time": "07:30:00",
+                    "route": "20425",
+                    "route_section_id": "20425#72",
+                    "sequence_number": 4,
+                    "route_path": "standard",
+                    "section_requirement": "ZWOL_Halt"
+                },
+                {
+                    "entry_time": "07:30:00",
+                    "exit_time": "07:32:00",
+                    "route": "20425",
+                    "route_section_id": "20425#102",
+                    "sequence_number": 5,
+                    "route_path": "standard",
+                    "section_requirement": "KIL_Halt"
+                },
+                {
+                    "entry_time": "07:32:00",
+                    "exit_time": "07:35:00",
+                    "route": "20425",
+                    "route_section_id": "20425#122",
+                    "sequence_number": 6,
+                    "route_path": "standard",
+                    "section_requirement": "RUES_Halt"
+                },
+                {
+                    "entry_time": "07:35:00",
+                    "exit_time": "07:39:00",
+                    "route": "20425",
+                    "route_section_id": "20425#142",
+                    "sequence_number": 7,
+                    "route_path": "standard",
+                    "section_requirement": "TW_Halt"
+                },
+                {
+                    "entry_time": "07:39:00",
+                    "exit_time": "07:40:00",
+                    "route": "20425",
+                    "route_section_id": "20425#295",
+                    "sequence_number": 8,
+                    "route_path": "standard",
+                    "section_requirement": "ZG_Halt"
+                }
+            ]
+        }
+    ]
+}

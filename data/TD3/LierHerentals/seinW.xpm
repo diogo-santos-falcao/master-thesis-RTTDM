@@ -1,0 +1,18 @@
+/* XPM */
+static char * C:\Users\benim\OneDrive\Documenten\traindir3\scenarios\Brussel_N\seinW_xpm[] = {
+"14 10 5 1",
+" 	c #000000",
+".	c #FFFFFF",
+"+	c #FFFC00",
+"@	c #00FF25",
+"#	c #FF0009",
+"     .........",
+"      ........",
+"  ++   .......",
+"  ++    ......",
+"              ",
+"              ",
+"  @@  ##  ++  ",
+"  @@  ##  ++  ",
+"              ",
+"              "};

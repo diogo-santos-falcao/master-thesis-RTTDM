@@ -1,0 +1,20 @@
+/* XPM */
+static char *simgreenN[] = {
+/* columns rows colors chars-per-pixel */
+"7 12 2 1 ",
+"  c black",
+". c green",
+/* pixels */
+"       ",
+"       ",
+"       ",
+"       ",
+"       ",
+"       ",
+"       ",
+"  ...  ",
+"  ...  ",
+"  ...  ",
+"       ",
+"       "
+};

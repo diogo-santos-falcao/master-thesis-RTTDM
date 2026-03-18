@@ -1,0 +1,70 @@
+Aspect: red
+	IconE: roodE.xpm
+	IconW: roodW.xpm
+	IconN: roodN.xpm
+	IconS: roodS.xpm
+	Action: stop
+
+Aspect: yellow
+	IconE: geelE.xpm
+	IconW: geelW.xpm
+	IconN: geelN.xpm
+	IconS: geelS.xpm
+	Action: speedLimit 40
+
+Aspect: ggh
+	IconE: gghE.xpm
+	IconW: gghW.xpm
+	IconN: gghN.xpm
+	IconS: gghS.xpm
+	Action: speedLimit 90
+
+Aspect: yellow60
+	IconE: geelE.xpm
+	IconW: geelW.xpm
+	IconN: geelN.xpm
+	IconS: geelS.xpm
+	Action: speedLimit 40
+
+Aspect: ggh60
+	IconE: gghE.xpm
+	IconW: gghW.xpm
+	IconN: gghN.xpm
+	IconS: gghS.xpm
+	Action: speedLimit 60
+
+# initial aspect
+
+OnInit:
+	.aspect = red
+	.fleeted = 0
+end
+
+OnCleared:
+       	if next.aspect = red
+		.aspect = yellow
+      	else	
+		.aspect = green
+   	end
+end
+
+
+
+OnUpdate:
+	if .aspect = red
+		return 
+	end 
+	if next.aspect = red 
+		if .switchThrown
+			.aspect = yellow60
+		else 
+			.aspect = yellow 
+	else 
+		if .switchThrown
+			.aspect = ggh60
+		else  
+			.aspect = ggh
+		end
+	end
+end
+

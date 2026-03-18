@@ -12,8 +12,8 @@ void stat(Instance instance, int diff){
     for (int j = 0; j < instance.train.size(); ++j) {
         int s = 0;
         res += instance.train[j].t.size();
-        for (route_path rp: instance.route[instance.train[j].route].route_path) {
-            for (route_section *rs: rp.route_section) {
+        for (route_path rp: instance.route[instance.train[j].route].route_paths) {
+            for (route_section *rs: rp.route_sections) {
                 sec++;
             }
         }
@@ -27,7 +27,7 @@ void stat(Instance instance, int diff){
 
 
 
-}
+};
 
 
 #endif //TRAIN_SCHEDULE_OPTIMISATION_STATS_H
